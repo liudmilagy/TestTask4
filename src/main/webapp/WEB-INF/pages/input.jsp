@@ -12,19 +12,23 @@
 </head>
     <body>
         <h5>Входные данные</h5>
-<%--        <form name = "Input" action="sort" method="post">--%>
+<%--        <form name = "Input" action="sort" method="get">--%>
 <%--            <textarea name="input" rows="20"> ${inputData} </textarea>--%>
 <%--            </br>--%>
-<%--&lt;%&ndash;            <input type="submit" name="button" value="Отсортировать">&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <input type="text" name="inputData" value="${inputData}">&ndash;%&gt;--%>
+<%--            <input type="submit" name="button" value="Отсортировать">--%>
 <%--        </form>--%>
-        <form name = "Input" action="sort" method="get">
+<%--        <spring:form method="get|post" action="/input/sort">--%>
+<%--            <textarea name="input" rows="20"> ${inputData} </textarea>--%>
+<%--            </br>--%>
+<%--            <input type="submit" name="button" value="Отсортировать">--%>
+<%--        </spring:form>--%>
+
+        <spring:form method="post" action="/input/sort" model="inputFromServer">
             <textarea name="input" rows="20"> ${inputData} </textarea>
             </br>
-            <input type="text" name="inputData" value="${inputData}">
-            <input type="submit" name="button" value="Отсортировать">
-        </form>
-
-
+            <input type="submit" value="Отсортировать">
+        </spring:form>
 
     </body>
 </html>

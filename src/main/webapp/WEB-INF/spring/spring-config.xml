@@ -13,4 +13,11 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+
+<!--    <mvc:view-controller path="/input/sort" view-name="/output"/>-->
+<!--    <bean id="resolver2" class="com.gly.TestTask4.controllers.TaskController.springframework.web.servlet.view.InternalResourceViewResolver">-->
+<!--        <property name="prefix" value="WEB-INF/pages" />-->
+<!--        <property name="suffix" value=".jsp" />-->
+<!--    </bean>-->
+
 </beans>

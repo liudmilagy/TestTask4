@@ -12,11 +12,11 @@
 </head>
     <body>
         <h5>Выходные данные</h5>
-        <form name = "Output" action="sort" method="get">
+<%--        <form name = "Output" action="sort" method="get">--%>
             <textarea name="output" rows="20"> ${outputData} </textarea>
 
             </br>
-        </form>
+<%--        </form>--%>
 
     </body>
 </html>
