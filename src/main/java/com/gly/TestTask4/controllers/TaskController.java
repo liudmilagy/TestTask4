@@ -12,14 +12,17 @@ import java.util.Random;
 public class TaskController {
 
     @RequestMapping(value = "/generateinput", method = RequestMethod.GET)
-    public @ResponseBody String  generateInput() {
-        Random random = new Random();
-        StringBuilder inputData = new StringBuilder("");
-        int bound = 10 + random.nextInt(40); // [10, 50), чтобы исключить совсем маленький массив чисел
-
-        for(int i = 0; i < bound; i++){
-            inputData.append(String.valueOf(random.nextFloat() * 100) + " \n");
-        }
-        return inputData.toString();
+//    public @ResponseBody String  generateInput() {
+//        Random random = new Random();
+//        StringBuilder inputData = new StringBuilder("");
+//        int bound = 10 + random.nextInt(40); // [10, 50), чтобы исключить совсем маленький массив чисел
+//
+//        for(int i = 0; i < bound; i++){
+//            inputData.append(String.valueOf(random.nextFloat() * 100) + " \n");
+//        }
+//        return inputData.toString();
+//    }
+    public String generate() {
+        return "/input";
     }
 }
