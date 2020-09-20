@@ -1,11 +1,8 @@
 package com.gly.TestTask4.controllers;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Random;
@@ -23,23 +20,15 @@ public class TaskController {
     public String showInputPage() {
         return "/input";
     }
-//    @RequestMapping(value = "/input", method = RequestMethod.GET)
-//    public ModelAndView showInputPage() {
-//        return new ModelAndView("/input", "inputFromServer", new String());
-//    }
-    @RequestMapping(value = "/sort", method = RequestMethod.GET)
-    public ModelAndView startSorting() {
-        return new ModelAndView("/output", "inputFromServer", new String());
-    }
 
     @RequestMapping(value = "/sort", method = RequestMethod.POST)
-    public String sort(@ModelAttribute("inputFromServer") String inputData, BindingResult result, ModelMap model) {
-        System.out.println("Зашли в сорт");
-        Float[] array = parseStringToArray(inputData);
+    public String sort(Model model, @RequestParam(value = "input") String inputData) {
+//        System.out.println("Зашли в сорт");
+        Float[] array = parseStringToArray(inputData, " \r\n");
         sort(array);
         String outputData = arrayToString(array);
         model.addAttribute("outputData", outputData);
-        return "output";
+        return "/output";
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -55,11 +44,11 @@ public class TaskController {
         return inputData.toString();
     }
 
-    public Float[] parseStringToArray(String data) {
-        String[] arrString = data.split(" ");
-        Float[] array = new Float[arrString.length];
-        for (int i = 0; i < arrString.length; i++) {
-            array[i] = Float.parseFloat(arrString[i]);
+    public Float[] parseStringToArray(String data, String regex) {
+        String[] arrString = data.split(regex);
+        Float[] array = new Float[arrString.length - 1]; // после "\r\n" идет пробел
+        for (int i = 0; i < arrString.length - 1; i++) {
+                array[i] = Float.parseFloat(arrString[i]);
         }
         return array;
     }

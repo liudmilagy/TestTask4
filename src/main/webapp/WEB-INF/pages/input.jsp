@@ -5,6 +5,8 @@
   Time: 18:39
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="true" %>
 <html>
 <head>
@@ -24,9 +26,10 @@
 <%--            <input type="submit" name="button" value="Отсортировать">--%>
 <%--        </spring:form>--%>
 
-        <spring:form method="post" action="/input/sort" model="inputFromServer">
+        <spring:form method="post" action="/sort" model="inputFromServer">
             <textarea name="input" rows="20"> ${inputData} </textarea>
-            </br>
+<%--            </br>--%>
+
             <input type="submit" value="Отсортировать">
         </spring:form>
 
