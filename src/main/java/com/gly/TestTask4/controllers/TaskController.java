@@ -24,7 +24,7 @@ public class TaskController {
     @RequestMapping(value = "/sort", method = RequestMethod.POST)
     public String sort(Model model, @RequestParam(value = "input") String inputData) {
 //        System.out.println("Зашли в сорт");
-        Float[] array = parseStringToArray(inputData, " \r\n");
+        Float[] array = parseStringToArray(inputData, "\r\n");
         sort(array);
         String outputData = arrayToString(array);
         model.addAttribute("outputData", outputData);
@@ -35,19 +35,18 @@ public class TaskController {
 
     public String randomStringOfValues() {
         Random random = new Random();
-        StringBuilder inputData = new StringBuilder("");
         int bound = 10 + random.nextInt(40); // [10, 50), чтобы исключить совсем маленький массив чисел
-
-        for(int i = 0; i < bound; i++){
-            inputData.append(String.valueOf(random.nextFloat() * 100) + " \n");
+        StringBuilder inputData = new StringBuilder(String.valueOf(random.nextFloat() * 100));
+        for(int i = 1; i < bound; i++){
+            inputData.append("\n" + String.valueOf(random.nextFloat() * 100));
         }
         return inputData.toString();
     }
 
     public Float[] parseStringToArray(String data, String regex) {
         String[] arrString = data.split(regex);
-        Float[] array = new Float[arrString.length - 1]; // после "\r\n" идет пробел
-        for (int i = 0; i < arrString.length - 1; i++) {
+        Float[] array = new Float[arrString.length];
+        for (int i = 0; i < arrString.length; i++) {
                 array[i] = Float.parseFloat(arrString[i]);
         }
         return array;
@@ -71,10 +70,10 @@ public class TaskController {
     }
 
     public String arrayToString(Object[] array) {
-        String str = "";
-        for (int i = 0; i <array.length; i++) {
-            str = str + array[i].toString() + "\n";
+        StringBuilder str = new StringBuilder(array[0].toString());
+        for (int i = 1; i <array.length; i++) {
+            str.append("\n" + array[i].toString());
         }
-        return str;
+        return str.toString();
     }
 }
